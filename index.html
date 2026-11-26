@@ -11,11 +11,9 @@
       --ink: #1b1b1b;
       --muted: #535353;
       --paper: #fbfaf9;
-      --card: #f0efee;
       --green: #105c55;
-      --green-soft: #88cbc2;
-      --selected-surface: #e7f2f0;
-      --selected-text: #064c48;
+      --button-hover-bg: #0b776c;
+      --button-active-bg: #084c45;
       --primary-bg: #105c55;
       --primary-text: #fff;
       --focus: #c5451d;
@@ -91,8 +89,6 @@
       line-height: 1.3;
     }
 
-    h3 { margin: 0; font-size: 1.12rem; }
-
     .top-tools {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -104,7 +100,7 @@
       padding: 10px 6px;
       border: 3px solid var(--green);
       border-radius: 27px;
-      background: transparent;
+      background: var(--paper);
       color: var(--green);
       cursor: pointer;
       font-weight: 850;
@@ -200,12 +196,7 @@
     main { padding-bottom: 40px; }
     .original-section { margin-top: 26px; }
 
-    .poster-frame {
-      position: relative;
-      overflow: hidden;
-      border-radius: 29px;
-      background: var(--green-soft);
-    }
+    .poster-frame { position: relative; }
 
     .poster-image-button {
       display: block;
@@ -217,7 +208,7 @@
       cursor: pointer;
     }
 
-    .poster-image-button img {
+    .poster-frame img {
       display: block;
       width: 100%;
       height: auto;
@@ -239,7 +230,7 @@
       cursor: pointer;
     }
 
-    .speaker-hotspot svg, .speaker-small svg {
+    .speaker-hotspot svg {
       width: 25px;
       height: 25px;
       fill: currentColor;
@@ -248,7 +239,8 @@
     .speaker-hotspot.room { left: 22%; top: 4%; }
     .speaker-hotspot.logo { right: 2%; top: 7%; }
     .speaker-hotspot.title { left: 66%; top: 34%; }
-    .speaker-hotspot.subtitle { left: 70%; top: 47%; }
+    .speaker-hotspot.poster-details { right: 10%; top: 59%; }
+    .speaker-hotspot.selected-speaker { top: 12px; left: 12px; }
 
     .poster-caption {
       margin: 12px 0 0;
@@ -257,11 +249,6 @@
 
     .poster-caption strong { color: var(--ink); }
     .picker { margin-top: 56px; }
-
-    .picker p {
-      margin: 5px 0 16px;
-      color: var(--muted);
-    }
 
     .mode-buttons {
       display: grid;
@@ -272,133 +259,22 @@
     .mode-button {
       min-height: 98px;
       padding: 10px 7px;
-      border: 2px solid transparent;
+      border: 2px solid var(--green);
       border-radius: 27px;
-      background: var(--card);
+      background: var(--paper);
+      color: var(--green);
       cursor: pointer;
       font-weight: 850;
       font-size: clamp(.95rem, 4vw, 1.45rem);
     }
 
     .mode-button[aria-pressed="true"] {
-      border-color: var(--selected-text);
-      background: var(--selected-surface);
-      color: var(--selected-text);
-    }
-
-    .selection-status {
-      min-height: 1.5em;
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: .88rem;
-    }
-
-    .selected-section {
-      margin-top: 36px;
-      padding-top: 26px;
-      border-top: 1px solid #d0ccc7;
-    }
-
-    .selected-section[hidden] { display: none; }
-    .selected-heading { margin-bottom: 14px; }
-
-    .selected-heading p {
-      margin: 4px 0 0;
-      color: var(--muted);
-    }
-
-    .selected-poster-frame {
-      position: relative;
-      width: min(100%, 560px);
-      margin: 0 auto;
-      padding: 10px;
-      border-radius: 20px;
-      background: #fff;
-    }
-
-    .selected-poster-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 70vh;
-      object-fit: contain;
-      border-radius: 9px;
-    }
-
-    .selected-caption {
-      width: min(100%, 560px);
-      margin: 8px auto 0;
-      color: var(--muted);
-      font-size: .88rem;
-    }
-
-    .info-section { margin-top: 26px; }
-
-    .info-section > p {
-      margin: 5px 0 14px;
-      color: var(--muted);
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .info-card {
-      min-width: 0;
-      display: grid;
-      grid-template-columns: 48px minmax(0, 1fr);
-      align-items: center;
-      gap: 10px;
-      padding: 12px 15px;
-      border-radius: 23px;
-      background: var(--card);
-    }
-
-    .speaker-small {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      flex: none;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
+      border-color: var(--primary-bg);
       background: var(--primary-bg);
       color: var(--primary-text);
-      cursor: pointer;
     }
 
-    .info-details { min-width: 0; }
-
-    .info-details summary {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      min-height: 58px;
-      cursor: pointer;
-      list-style: none;
-      font-size: 1.03rem;
-      font-weight: 850;
-    }
-
-    .info-details summary::-webkit-details-marker { display: none; }
-
-    .info-details summary::after {
-      content: "+";
-      color: var(--green);
-      font-size: 1.2rem;
-    }
-
-    .info-details[open] summary::after { content: "−"; }
-    .info-copy { padding: 0 16px 17px; }
-
-    .info-copy p {
-      margin: 0 0 12px;
-      overflow-wrap: anywhere;
-    }
+    .selected-section { margin-top: 26px; }
 
     .reading-panel {
       margin-top: 22px;
@@ -441,13 +317,7 @@
       margin: 0;
       font-size: 1.18rem;
       font-weight: 750;
-    }
-
-    .return-link {
-      display: inline-block;
-      margin-top: 22px;
-      font-weight: 800;
-      text-underline-offset: 4px;
+      white-space: pre-line;
     }
 
     dialog {
@@ -502,23 +372,39 @@
       .picker { margin-top: 42px; }
       .mode-buttons { gap: 8px; }
       .mode-button { min-height: 76px; border-radius: 22px; }
-      .info-grid { gap: 9px; }
-      .info-card { border-radius: 18px; }
-      .info-details summary { min-height: 72px; gap: 8px; padding: 10px; font-size: .94rem; }
-      .info-card { grid-template-columns: 40px minmax(0, 1fr); gap: 8px; padding: 10px; }
-      .speaker-small { width: 40px; height: 40px; }
-      .speaker-small svg { width: 21px; height: 21px; }
-      .info-copy { padding-inline: 12px; }
     }
 
     @media (max-width: 360px) {
       .top-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .mode-button { font-size: .9rem; }
-      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    button:not(.poster-image-button) {
+      transition: background-color 140ms ease, border-color 140ms ease,
+        color 140ms ease, box-shadow 140ms ease, transform 100ms ease;
+    }
+
+    @media (hover: hover) {
+      button:not(.poster-image-button):hover {
+        border-color: var(--button-hover-bg);
+        background: var(--button-hover-bg);
+        color: var(--primary-text);
+        box-shadow: 0 3px 0 var(--button-active-bg);
+      }
+    }
+
+    button:not(.poster-image-button):active {
+      border-color: var(--button-active-bg);
+      background: var(--button-active-bg);
+      color: var(--primary-text);
+      box-shadow: none;
+      transform: translateY(2px);
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      button:not(.poster-image-button) { transition: none; }
+      button:not(.poster-image-button):active { transform: none; }
     }
   </style>
 </head>
@@ -570,18 +456,18 @@
       <figure>
         <div class="poster-frame" id="original-frame">
           <button class="poster-image-button" type="button" data-speak="original" aria-label="원본 포스터 전체 그림 설명 듣기">
-            <img src="image/original-poster-photo.jpg" alt="민트색 바탕에 자수로 그린 산과 마을 풍경이 펼쳐진 원본 포스터 사진입니다. 중앙 위쪽에 ‘자수, 염원을 그리다’ 제목과 영문 제목이 있습니다.">
+            <img src="image/original-poster-photo.png" alt="민트색 바탕에 자수로 그린 산과 마을 풍경이 펼쳐진 원본 포스터 사진입니다. 중앙 위쪽에 ‘자수, 염원을 그리다’ 제목과 영문 제목이 있습니다.">
           </button>
-          <button class="speaker-hotspot room" type="button" data-speak="room" aria-label="전시 장소 표기 읽기">
+          <button class="speaker-hotspot room" type="button" data-speak="room" aria-label="전시 장소 안내 듣기">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9zm12.5 3a3.5 3.5 0 0 0-2-3.16v6.32a3.5 3.5 0 0 0 2-3.16zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
           </button>
-          <button class="speaker-hotspot logo" type="button" data-speak="museum" aria-label="서울공예박물관 로고 읽기">
+          <button class="speaker-hotspot logo" type="button" data-speak="museum" aria-label="서울공예박물관 소개 듣기">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9zm12.5 3a3.5 3.5 0 0 0-2-3.16v6.32a3.5 3.5 0 0 0 2-3.16zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
           </button>
-          <button class="speaker-hotspot title" type="button" data-speak="title" aria-label="전시 제목 읽기">
+          <button class="speaker-hotspot title" type="button" data-speak="title" aria-label="전시 제목 및 기획 의도 듣기">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9zm12.5 3a3.5 3.5 0 0 0-2-3.16v6.32a3.5 3.5 0 0 0 2-3.16zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
           </button>
-          <button class="speaker-hotspot subtitle" type="button" data-speak="english" aria-label="영문 제목 읽기">
+          <button class="speaker-hotspot poster-details" type="button" data-speak="posterDetails" aria-label="포스터 이미지 및 분위기 설명 듣기">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9zm12.5 3a3.5 3.5 0 0 0-2-3.16v6.32a3.5 3.5 0 0 0 2-3.16zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
           </button>
         </div>
@@ -598,27 +484,18 @@
         <button class="mode-button" type="button" data-mode="tunnel" aria-pressed="false" aria-controls="selected-section">터널시야</button>
         <button class="mode-button" type="button" data-mode="colorblind" aria-pressed="false" aria-controls="selected-section">색맹</button>
       </div>
-      <p class="selection-status" id="selection-status" role="status" aria-live="polite" aria-atomic="true"></p>
     </section>
 
     <section class="selected-section" id="selected-section" hidden aria-labelledby="selected-title">
-      <div class="selected-heading">
-        <h2 id="selected-title"></h2>
-        <p id="selected-description"></p>
-      </div>
+      <h2 class="sr-only" id="selected-title"></h2>
       <figure>
-        <div class="selected-poster-frame">
-          <button class="poster-image-button" id="selected-image-button" type="button" aria-label="선택한 포스터 그림 설명 듣기">
-            <img class="selected-poster-image" id="selected-image" src="image/poster-contrast.png" alt="">
+        <div class="poster-frame">
+          <img id="selected-image" src="image/poster-contrast.png" alt="">
+          <button class="speaker-hotspot selected-speaker" id="selected-speaker" type="button" aria-label="선택한 포스터 설명 듣기" aria-controls="reading-panel">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9zm12.5 3a3.5 3.5 0 0 0-2-3.16v6.32a3.5 3.5 0 0 0 2-3.16zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
           </button>
         </div>
-        <figcaption class="selected-caption" id="selected-caption"></figcaption>
       </figure>
-      <section class="info-section" aria-labelledby="info-title">
-        <h3 id="info-title">자세한 설명 항목</h3>
-        <p>항목을 열어 자세한 내용을 확인하거나 스피커 버튼으로 들을 수 있습니다.</p>
-        <div class="info-grid" id="info-grid"></div>
-      </section>
       <div class="reading-panel" id="reading-panel" hidden>
         <div class="reading-bar">
           <p class="reading-state" id="reading-state" role="status" aria-live="polite" aria-atomic="true">선택한 정보</p>
@@ -626,7 +503,6 @@
         </div>
         <p class="reading-text" id="reading-text"></p>
       </div>
-      <a class="return-link" href="#mode-picker">보기 방식 목차로 돌아가기</a>
     </section>
   </main>
 
@@ -635,7 +511,7 @@
       <h2 id="zoom-title">포스터 크게 보기</h2>
       <button class="small-control" id="close-zoom" type="button">닫기</button>
     </div>
-    <img class="dialog-image" id="dialog-image" src="image/original-poster-photo.jpg" alt="원본 포스터 전체 이미지">
+    <img class="dialog-image" id="dialog-image" src="image/original-poster-photo.png" alt="원본 포스터 전체 이미지">
   </dialog>
 
   <footer>
@@ -648,149 +524,155 @@
     const modes = {
       lowvision: {
         title: '약시를 위한 포스터',
-        description: '글자를 키우고 제목과 전시 정보를 눈에 잘 띄게 배치했습니다.',
         image: 'image/poster-contrast.png',
         alt: '민트색 바탕에 큰 검은 글씨로 전시 제목이 있습니다. 가운데에는 붉은색, 남색, 크림색 천 조각으로 표현한 저고리가 있고, 아래쪽에 전시 날짜와 장소가 굵은 글씨로 정리되어 있습니다.',
-        caption: '글자 크기와 명암 대비를 높인 포스터입니다.',
-        items: [
-          ['제목', '자수, 염원을 그리다. 영문 제목은 Embroidered Lives, Enduring Wishes입니다.'],
-          ['기간', '상설전시이며 2025년 12월 20일부터입니다.'],
-          ['장소', '서울공예박물관 전시3동 2층 전시실입니다.'],
-          ['포스터 설명', '민트색 바탕 중앙에 전통 저고리 모양의 그림이 있습니다. 제목은 굵은 검은 글씨로 크고 선명하게 보입니다.']
-        ]
+        descriptionSpeech: [
+          '약시를 고려한 맞춤형 포스터예요.',
+          '전시 정보를 보다 편안하게 읽으실 수 있도록 글자 크기를 키우고, 제목과 주요 전시 정보를 눈에 잘 띄게 배치했어요.',
+          '포스터는 민트색을 배경으로 하며, 중앙에는 한국의 전통 저고리 모양의 그림이 자리하고 있어요. 전시 제목은 크고 굵은 검은색 글씨로 표현되어 있어요.',
+          '원본 포스터의 은은한 색감을 유지하면서도 중요한 정보가 돋보이도록 구성했어요.',
+        ].join('\n\n')
       },
       tunnel: {
         title: '터널시야를 고려한 포스터',
-        description: '어두운 배경에 밝은 글자를 사용하고 정보를 세로로 배치했습니다.',
         image: 'image/poster-low-vision.png',
         alt: '검은색에 가까운 어두운 바탕의 세로형 포스터입니다. 왼쪽의 세로선과 번호를 따라 제목, 상설전시, 날짜와 장소가 밝은 민트색과 노란색 글씨로 이어집니다.',
-        caption: '어두운 배경과 밝은 글자를 사용한 포스터입니다.',
-        items: [
-          ['제목', '자수, 염원을 그리다.'],
-          ['기간', '상설전시이며 2025년 12월 20일부터입니다.'],
-          ['장소', '서울공예박물관 전시3동 2층 전시실입니다.'],
-          ['포스터 설명', '어두운 바탕 왼쪽에 위에서 아래로 이어지는 선과 번호가 있습니다. 제목은 민트색, 날짜는 노란색으로 강조되어 있습니다.']
-        ]
+        descriptionSpeech: [
+          '터널시야를 고려한 맞춤형 포스터예요.',
+          '좁은 시야에서도 정보를 순서대로 확인하실 수 있도록 어두운 배경에 밝은 글자를 사용하고, 주요 정보를 세로 방향으로 배치했어요.',
+          '포스터 왼쪽에는 위에서 아래로 이어지는 선과 번호가 자리하고 있어요. 전시 제목은 민트색으로, 전시 날짜는 노란색으로 강조했어요.',
+          '어두운 배경과 밝은 글자의 대비를 활용하고, 일정한 방향으로 정보를 확인할 수 있도록 구성했어요.',
+        ].join('\n\n')
       },
       colorblind: {
         title: '색맹 관람객을 위한 포스터',
-        description: '색 외에도 글자와 선, 점무늬로 정보를 구분하도록 구성했습니다.',
         image: 'image/poster-braille.png',
         alt: '민트색 세로형 포스터입니다. 위쪽에는 점자와 가로선, 사선, 점무늬 패턴이 있고, 아래쪽에는 전시 정보와 접힌 병풍 모양의 윤곽이 있습니다.',
-        caption: '선과 점무늬, 글자를 함께 사용했고 점자도 넣었습니다.',
-        items: [
-          ['제목', '자수, 염원을 그리다. 영문 제목은 Embroidered Lives, Enduring Wishes입니다.'],
-          ['기간', '상설전시이며 2025년 12월 20일부터입니다.'],
-          ['장소', '서울공예박물관 전시3동 2층 전시실입니다.'],
-          ['문의', '02-6450-7000입니다.'],
-          ['포스터 설명', '위쪽에는 점자와 서로 다른 선·사선·점 패턴이 있습니다. 아래쪽에는 전시 정보와 여러 면으로 접힌 병풍 모양의 윤곽선이 있습니다.']
-        ]
+        descriptionSpeech: [
+          '색맹을 고려한 맞춤형 포스터예요.',
+          '색상만으로 정보를 구분하지 않도록 글자와 선, 다양한 무늬를 함께 사용했어요.',
+          '포스터 위쪽에는 점자 형태의 이미지와 여러 형태의 선, 사선, 점무늬가 배치되어 있어요. 아래쪽에는 주요 전시 정보와 여러 면으로 접힌 병풍 모양의 윤곽선이 자리하고 있어요.',
+          '색상뿐만 아니라 형태와 무늬를 통해서도 정보를 구분할 수 있도록 구성했어요.',
+          '전시 관람에 관한 문의는 서울공예박물관 대표전화, 02-6450-7000으로 하실 수 있어요.',
+        ].join('\n\n')
       }
     };
 
+    const readAllIntroduction = [
+      '안녕하세요. 서울공예박물관의 전시, \'자수, 염원을 그리다\'를 소개해 드릴게요.',
+      '이번 전시는 서울 종로구 안국동에 위치한 서울공예박물관 전시 3동, 2층 전시실에서 만나보실 수 있어요. 2025년 12월 20일부터 상설전시로 진행되며, 관람료는 무료예요.',
+      '전시의 영문 제목은 \'Embroidered Lives, Enduring Wishes\'로, 우리말로 풀어보면 \'수놓은 삶, 오래도록 이어지는 소망\'이라는 뜻이에요.',
+      '이번 전시에서는 탄생과 성장, 혼인, 장수, 그리고 죽음 이후의 평안까지 우리 옛사람들이 자수에 담아낸 다양한 소망과 염원을 만나보실 수 있어요.',
+      '원본 포스터는 은은한 민트색을 배경으로 하고 있어요. 전시 제목인 \'자수\'는 짙은 보라색의 크고 독특한 글씨로 표현되어 있으며, 배경에는 여러 색의 실로 한 땀 한 땀 수놓은 듯한 산과 마을 풍경이 펼쳐져 있어요.',
+      '부드러운 민트색과 깊은 보라색의 조화, 섬세한 자수 풍경이 어우러져 차분하고 고즈넉한 분위기를 자아내요.',
+      '화면 아래에서는 약시, 터널시야, 색맹을 고려한 세 가지 맞춤형 포스터를 선택하실 수 있어요. 자신에게 편안한 보기를 선택해 주세요.',
+    ].join('\n\n');
+
     const originalSpeech = {
       original: '원본 포스터입니다. 민트색 바탕 전체에 자수로 그린 산과 마을 풍경이 펼쳐집니다.',
-      room: '왼쪽 위에 전시3동 2층 전시실이라고 적혀 있습니다.',
-      museum: '오른쪽 위에 서울공예박물관 로고가 있습니다.',
-      title: '전시 제목은 자수, 염원을 그리다입니다.',
-      english: '영문 제목은 Embroidered Lives, Enduring Wishes입니다.'
+      room: '이번 전시는 서울공예박물관 전시 3동, 2층 전시실에서 만나보실 수 있어요. 2025년 12월 20일부터 상설전시로 진행되며, 관람료는 무료예요.',
+      museum: '전시가 열리는 곳은 서울공예박물관이에요. 서울 종로구 안국동에 위치한 공예 전문 박물관으로, 우리나라의 다양한 전통 공예와 현대 공예 작품을 만나보실 수 있어요.',
+      title: '이번 전시의 제목은 \'자수, 염원을 그리다\'예요. 영문 제목은 \'Embroidered Lives, Enduring Wishes\'로, 우리말로 풀어보면 \'수놓은 삶, 오래도록 이어지는 소망\'이라는 뜻이에요.\n\n이번 전시에서는 탄생과 성장, 혼인, 장수, 그리고 죽음 이후의 평안까지, 우리 옛사람들이 자수에 담아낸 다양한 소망과 염원을 만나보실 수 있어요.',
+      posterDetails: '포스터는 은은한 민트색을 배경으로 하고 있어요. 전시 제목인 \'자수\'는 짙은 보라색의 크고 독특한 글씨로 표현되어 있어요.\n\n배경에는 여러 색의 실로 한 땀 한 땀 수놓은 듯한 산과 마을 풍경이 펼쳐져 있어요. 부드러운 민트색과 깊은 보라색의 조화, 섬세한 자수 풍경이 어우러져 차분하고 고즈넉한 분위기를 자아내요. 한국 전통 자수의 섬세한 아름다움을 느낄 수 있는 포스터예요.'
     };
 
     const speechStatus = document.querySelector('#speech-status');
     const zoomDialog = document.querySelector('#zoom-dialog');
     const dialogImage = document.querySelector('#dialog-image');
     const selectedSection = document.querySelector('#selected-section');
+    const originalFigure = document.querySelector('.original-section figure');
+    const selectedFigure = selectedSection.querySelector('figure');
+    const readingPanel = document.querySelector('#reading-panel');
+    const readingState = document.querySelector('#reading-state');
+    const readingText = document.querySelector('#reading-text');
+    const readingPause = document.querySelector('#pause-resume');
+    const synthesis = window.speechSynthesis;
+    readingPause.hidden = !synthesis;
     const fontOptions = Array.from(document.querySelectorAll('input[name="font-size"]'));
     let activeMode = null;
     let speechRate = 1;
-    let currentText = '';
+    let currentUtterance = null;
     let currentLabel = '선택한 정보';
     const rates = [0.8, 1, 1.2, 1.4];
     const rateNames = ['느리게', '보통', '빠르게', '매우 빠르게'];
 
-    function say(text, label = '선택한 정보') {
-      currentText = text;
-      currentLabel = label;
+    function updatePauseButton(paused) {
+      readingPause.textContent = paused ? '계속' : '멈춤';
+      readingPause.setAttribute('aria-label', paused ? '음성 읽기 계속하기' : '음성 읽기 일시정지');
+    }
 
-      if (!('speechSynthesis' in window)) {
+    function cancelSpeech() {
+      currentUtterance = null;
+      synthesis?.cancel();
+      updatePauseButton(false);
+    }
+
+    function say(text, label, anchor = readingPanel.previousElementSibling) {
+      cancelSpeech();
+      if (readingPanel.previousElementSibling !== anchor) anchor.after(readingPanel);
+      readingPanel.hidden = false;
+      readingState.textContent = label;
+      readingText.textContent = text;
+
+      if (!synthesis) {
         speechStatus.textContent = '이 브라우저에서는 음성 읽기를 지원하지 않습니다. 화면에 표시된 글을 확인해 주세요.';
         return;
       }
 
-      const panel = document.querySelector('#reading-panel');
-      if (activeMode) {
-        panel.hidden = false;
-        document.querySelector('#reading-state').textContent = `지금 읽는 중 · ${label}`;
-        document.querySelector('#reading-text').textContent = text;
-      }
-
-      window.speechSynthesis.cancel();
-
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'ko-KR';
       utterance.rate = speechRate;
+      currentUtterance = utterance;
+      currentLabel = label;
 
       utterance.onstart = () => {
+        if (currentUtterance !== utterance) return;
         speechStatus.textContent = '읽는 중입니다.';
-        if (activeMode) {
-          document.querySelector('#reading-state').textContent = `지금 읽는 중 · ${label}`;
-        }
+        readingState.textContent = `지금 읽는 중 · ${label}`;
       };
 
       utterance.onend = () => {
+        if (currentUtterance !== utterance) return;
+        currentUtterance = null;
         speechStatus.textContent = '읽기가 끝났습니다.';
-        if (activeMode) {
-          document.querySelector('#reading-state').textContent = '읽기가 끝났습니다.';
-        }
+        readingState.textContent = '읽기가 끝났습니다.';
       };
 
-      window.speechSynthesis.speak(utterance);
+      synthesis.speak(utterance);
     }
 
     document.querySelectorAll('[data-speak]').forEach(button => {
       button.addEventListener('click', () => {
-        say(originalSpeech[button.dataset.speak], button.getAttribute('aria-label'));
+        say(originalSpeech[button.dataset.speak], button.getAttribute('aria-label'), originalFigure);
+      });
+    });
+
+    const toolButtons = document.querySelectorAll('.top-tools .tool-button');
+    toolButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        toolButtons.forEach(tool => tool.classList.toggle('primary', tool === button));
       });
     });
 
     document.querySelector('#read-all').addEventListener('click', () => {
-      const parts = [
-        originalSpeech.original,
-        originalSpeech.room,
-        originalSpeech.museum,
-        originalSpeech.title,
-        originalSpeech.english
-      ];
-
-      if (activeMode) {
-        const mode = modes[activeMode];
-        parts.push(mode.title, mode.description, ...mode.items.map(([label, value]) => `${label}. ${value}`));
-      } else {
-        parts.push('아래에서 약시, 터널시야, 색맹을 위한 안내 포스터를 선택할 수 있습니다.');
-      }
-
-      say(parts.join(' '), '전체 포스터');
+      say(readAllIntroduction, '전체 포스터', originalFigure);
     });
 
     document.querySelector('#stop-reading').addEventListener('click', () => {
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      cancelSpeech();
       speechStatus.textContent = '읽기를 멈췄습니다.';
-      if (activeMode) document.querySelector('#reading-state').textContent = '읽기를 멈췄습니다.';
+      if (!readingPanel.hidden) readingState.textContent = '읽기를 멈췄습니다.';
     });
 
-    document.querySelector('#pause-resume').addEventListener('click', event => {
-      const button = event.currentTarget;
-
-      if ('speechSynthesis' in window && window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-        button.textContent = '멈춤';
-        button.setAttribute('aria-label', '음성 읽기 일시정지');
-        document.querySelector('#reading-state').textContent = '읽기를 계속합니다.';
-      } else if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
-        window.speechSynthesis.pause();
-        button.textContent = '계속';
-        button.setAttribute('aria-label', '음성 읽기 계속하기');
-        document.querySelector('#reading-state').textContent = '읽기를 일시정지했습니다.';
+    readingPause.addEventListener('click', () => {
+      if (synthesis?.paused) {
+        synthesis.resume();
+        updatePauseButton(false);
+        readingState.textContent = '읽기를 계속합니다.';
+      } else if (synthesis?.speaking) {
+        synthesis.pause();
+        updatePauseButton(true);
+        readingState.textContent = '읽기를 일시정지했습니다.';
       }
     });
 
@@ -802,8 +684,8 @@
       document.querySelector('#speed-label').textContent = `빠르기 · ${rateNames[next]}`;
       event.currentTarget.setAttribute('aria-label', `읽기 속도 ${rateNames[next]}, 누르면 변경`);
 
-      if ('speechSynthesis' in window && window.speechSynthesis.speaking && currentText) {
-        say(currentText, currentLabel);
+      if (synthesis?.speaking && currentUtterance) {
+        say(currentUtterance.text, currentLabel);
         speechStatus.textContent = `읽기 속도를 ${rateNames[next]}로 바꾸고 현재 내용을 처음부터 다시 읽습니다.`;
       } else {
         speechStatus.textContent = `읽기 속도를 ${rateNames[next]}로 바꿨습니다. 다음 읽기부터 적용됩니다.`;
@@ -819,12 +701,11 @@
       event.currentTarget.setAttribute('aria-pressed', String(enabled));
 
       document.documentElement.style.setProperty('--paper', enabled ? '#000' : '#fbfaf9');
-      document.documentElement.style.setProperty('--card', enabled ? '#111' : '#f0efee');
       document.documentElement.style.setProperty('--ink', enabled ? '#fff' : '#1b1b1b');
       document.documentElement.style.setProperty('--muted', enabled ? '#eee' : '#535353');
       document.documentElement.style.setProperty('--green', enabled ? '#75eadb' : '#105c55');
-      document.documentElement.style.setProperty('--selected-surface', enabled ? '#fff' : '#e7f2f0');
-      document.documentElement.style.setProperty('--selected-text', enabled ? '#000' : '#064c48');
+      document.documentElement.style.setProperty('--button-hover-bg', enabled ? '#75eadb' : '#0b776c');
+      document.documentElement.style.setProperty('--button-active-bg', enabled ? '#ffdd57' : '#084c45');
       document.documentElement.style.setProperty('--primary-bg', enabled ? '#fff' : '#105c55');
       document.documentElement.style.setProperty('--primary-text', enabled ? '#000' : '#fff');
 
@@ -838,7 +719,7 @@
 
     document.querySelector('#zoom-button').addEventListener('click', () => {
       if (!activeMode) {
-        updateZoomImage('image/original-poster-photo.jpg', '원본 포스터 전체 이미지');
+        updateZoomImage('image/original-poster-photo.png', '원본 포스터 전체 이미지');
       }
       zoomDialog.showModal();
     });
@@ -849,7 +730,7 @@
     });
 
     document.querySelector('.poster-image-button[data-speak="original"]').addEventListener('click', () => {
-      updateZoomImage('image/original-poster-photo.jpg', '원본 포스터 전체 이미지');
+      updateZoomImage('image/original-poster-photo.png', '원본 포스터 전체 이미지');
     });
 
     function renderMode(key) {
@@ -858,74 +739,32 @@
 
       selectedSection.hidden = false;
       document.querySelector('#selected-title').textContent = mode.title;
-      document.querySelector('#selected-description').textContent = mode.description;
 
       const image = document.querySelector('#selected-image');
       image.src = mode.image;
       image.alt = mode.alt;
-      document.querySelector('#selected-caption').textContent = mode.caption;
 
       document.querySelectorAll('.mode-button').forEach(button => {
         button.setAttribute('aria-pressed', String(button.dataset.mode === key));
       });
 
-      const grid = document.querySelector('#info-grid');
-      grid.replaceChildren();
-
-      mode.items.forEach(([label, value]) => {
-        const card = document.createElement('div');
-        card.className = 'info-card';
-
-        const speaker = document.createElement('button');
-        speaker.type = 'button';
-        speaker.className = 'speaker-small';
-        speaker.setAttribute('aria-label', `${label} 정보 읽어주기`);
-        speaker.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9zm12.5 3a3.5 3.5 0 0 0-2-3.16v6.32a3.5 3.5 0 0 0 2-3.16zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
-        speaker.addEventListener('click', () => say(`${label}. ${value}`, label));
-
-        const details = document.createElement('details');
-        details.className = 'info-details';
-
-        const summary = document.createElement('summary');
-        const name = document.createElement('span');
-        name.textContent = label;
-        summary.append(name);
-
-        const copy = document.createElement('div');
-        copy.className = 'info-copy';
-
-        const text = document.createElement('p');
-        text.textContent = value;
-
-        const readButton = document.createElement('button');
-        readButton.type = 'button';
-        readButton.className = 'small-control';
-        readButton.textContent = '이 항목 읽기';
-        readButton.setAttribute('aria-label', `${label} 정보 소리로 읽기`);
-        readButton.addEventListener('click', () => say(`${label}. ${value}`, label));
-
-        copy.append(text, readButton);
-        details.append(summary, copy);
-        card.append(speaker, details);
-        grid.append(card);
-      });
-
-      document.querySelector('#reading-panel').hidden = true;
-      speechStatus.textContent = `${mode.title}를 선택했습니다. 내용을 들으려면 스피커 버튼을 누르세요.`;
-      document.querySelector('#reading-text').textContent = '';
+      if (readingPanel.parentElement === selectedSection) {
+        cancelSpeech();
+        readingPanel.hidden = true;
+        readingText.textContent = '';
+      }
+      speechStatus.textContent = `${mode.title}를 선택했습니다. 스피커 버튼을 누르면 설명을 들을 수 있습니다.`;
 
       updateZoomImage(mode.image, mode.alt);
-
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     document.querySelectorAll('.mode-button').forEach(button => {
       button.addEventListener('click', () => renderMode(button.dataset.mode));
     });
 
-    document.querySelector('#selected-image-button').addEventListener('click', () => {
+    document.querySelector('#selected-speaker').addEventListener('click', () => {
       const mode = modes[activeMode];
-      say(mode.alt, '포스터 설명');
+      say(mode.descriptionSpeech, '포스터 설명', selectedFigure);
     });
   </script>
 </body>
